@@ -22,7 +22,7 @@ function AddCategory() {
     console.log(addcategory);
   }
   return (
-    <div>
+    <div className="categoryForm">
       <Form>
         <Form.Group>
           <Form.Label>Add Category</Form.Label>

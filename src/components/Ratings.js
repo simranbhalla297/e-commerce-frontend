@@ -15,6 +15,7 @@ export default function Ratings({ rating }) {
         halfIcon={<i className="fa fa-star-half-alt"></i>}
         fullIcon={<i className="fa fa-star"></i>}
         activeColor="#ffd700"
+        edit={false}
       />
     </div>
   );

@@ -4,6 +4,8 @@ import { getProducts } from "../actions/productActions";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ProductCard from "./ProductCard";
+//import { Container } from "react-bootstrap";
+import ImageCarousal from "./ImageCarousal";
 
 //import ProductCarousel from "../pages/ProductCarousel";
 function Home() {
@@ -27,6 +29,7 @@ function Home() {
     var apiurl = "http://localhost:5000/product/products";
     let response = await fetch(apiurl, {
       method: "POST",
+      //send request to server
       body: JSON.stringify({
         categoryId: categoryId,
         sortBy: sortBy,
@@ -74,29 +77,34 @@ function Home() {
   return (
     <>
       <div>
-        <select onChange={getSelectedvalue}>
-          <option value="">All</option>
-          {productoption.map((option) => (
-            <option value={option._id} key={option._id}>
-              {option.name}
-            </option>
-          ))}
-        </select>
+        <ImageCarousal />
       </div>
-      <div>
-        <select onChange={sortOnclick}>
-          <option value="createdAt">sort by latest</option>
-          <option value="price">sort by price</option>
-          <option value="rating">sort by rating</option>
-        </select>
+      <div className="select_main">
+        <div className="select_option">
+          <select onChange={getSelectedvalue}>
+            <option value="">All</option>
+            {productoption.map((option) => (
+              <option value={option._id} key={option._id}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="Sort_option">
+          <select onChange={sortOnclick}>
+            <option value="createdAt">sort by latest</option>
+            <option value="price">sort by price</option>
+            <option value="rating">sort by rating</option>
+          </select>
+        </div>
       </div>
 
       {/*<h1>{selecteCategory}</h1>*/}
 
-      <div style={{ display: "flex", flexWrap: "nowrap" }}>
+      <div className="card-component">
         {productList.map((product, id) => {
           return (
-            <div key={id}>
+            <div className="card-wrapper" key={id}>
               <ProductCard product={product} />
             </div>
           );

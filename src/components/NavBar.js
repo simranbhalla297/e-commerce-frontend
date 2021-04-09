@@ -18,6 +18,9 @@ function NavBar() {
   };
   const userinfo = useSelector((state) => state.userInfo);
   console.log(userinfo);
+  const cartList = useSelector((state) => state.cart);
+  console.log(cartList.length);
+
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -27,6 +30,7 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
             <NavLink to="/cart">
+              {cartList.length}
               <FaShoppingCart />
               Cart
             </NavLink>
