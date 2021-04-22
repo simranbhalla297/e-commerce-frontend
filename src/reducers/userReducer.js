@@ -4,7 +4,7 @@ const IntialState = {
   user: null,
 };
 const userReducer = (state = IntialState, action) => {
-  console.log(IntialState);
+  //console.log(IntialState);
   switch (action.type) {
     case USER_LOGIN:
       return {

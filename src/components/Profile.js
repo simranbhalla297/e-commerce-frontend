@@ -13,21 +13,21 @@ function Profile() {
   const [imageurl, setImageurl] = useState();
   let history = useHistory();
 
-  console.log(history);
+  //console.log(history);
   var user = JSON.parse(localStorage.getItem("userInfo"));
-  console.log(user);
+  // console.log(user);
 
   var token = JSON.parse(localStorage.getItem("token"));
-  console.log(token);
+  //console.log(token);
   //image
   const types = ["image/png", "image/jpg"];
   var imageRef = React.createRef();
 
   useEffect(() => {
-    if (!user) {
+    if (!user || !token) {
       history.push("/login");
     }
-    async function getidDetails() {
+    async function getUserdetail() {
       const response = await fetch(`http://localhost:5000/auth/user`, {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -41,18 +41,18 @@ function Profile() {
       setAge(data.age);
       setAddress(data.address);
       setphone(data.phone);
-      console.log(data);
+      // console.log(data);
     }
-    getidDetails();
+    getUserdetail();
   }, []);
 
   async function imageUpdate() {
     var user = JSON.parse(localStorage.getItem("userInfo"));
-    console.log(user);
+    //  console.log(user);
     var userId = user.id;
-    console.log(userId);
+    // console.log(userId);
     const ref = firebase.firestore().collection("profileImage").doc();
-    console.log(ref);
+    // console.log(ref);
     let downloadUrl = null;
     if (image) {
       //let uuid = uuidv4();
@@ -70,7 +70,7 @@ function Profile() {
   }
   //set profile picture
   function onImageSelected(e) {
-    console.log("onImageSelected");
+    // console.log("onImageSelected");
 
     setImage(imageRef.current.files[0]);
   }

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { addTocart } from "../actions/cartActions";
+import { addFavitems } from "../actions/favActions";
 import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { Row, Col, ListGroup, Card, Button, Container } from "react-bootstrap";
 import Comments from "./Comments";
+import Ratings from "../components/Ratings";
 import RelatedProducts from "../pages/RelatedProducts";
 //import PostComment from "../components/PostComment";
 function ProductDetail() {
@@ -12,39 +15,46 @@ function ProductDetail() {
   const [loading, setLoading] = useState(false);
   const [showmore, setShowMore] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [fav, setfav] = useState(false);
   // const [itemShow, setitemShow] = useState(200);
   var token = JSON.parse(localStorage.getItem("token"));
-  console.log(token);
+  //console.log(token);
   const location = useLocation();
-  console.log(location);
+  //console.log(location);
   var search = location.search;
-  console.log(search);
+  //console.log(search);
   var ProductId = search.substring(4);
   console.log(ProductId);
   const cartlist = useSelector((state) => state.products);
-  console.log(cartlist);
+  //console.log(cartlist);
+  const favItemlist = useSelector((state) => state.favitem);
+  console.log(favItemlist);
+  console.log(productdetail);
   const dispatch = useDispatch();
   const getProductDetailsById = async () => {
     setLoading(true);
     var search = location.search;
-    console.log(search);
+    //console.log(search);
     var ProductId = search.substring(4);
-    console.log(ProductId);
+    //console.log(ProductId);
     var apiurl = `http://localhost:5000/product/product/${ProductId}`;
     let response = await fetch(apiurl);
     if (response.ok) {
       const json = await response.json();
-      console.log(json.product);
+      //console.log(json.product);
       setproductDetails(json.product);
       setLoading(false);
+    } else {
+      setLoading(false);
+      console.log(response);
     }
   };
 
   const productAddtocart = async () => {
     var search = location.search;
-    console.log(search);
+    //console.log(search);
     var ProductId = search.substring(4);
-    console.log(ProductId);
+    //console.log(ProductId);
     const addProducttocart = {
       productname: productdetail.name,
       quantity: quantity,
@@ -62,9 +72,11 @@ function ProductDetail() {
     });
 
     const data = await response.json();
-    console.log(data.itemsinCart);
-    dispatch(addTocart(data));
+    console.log(data);
+    //console.log(data.itemsinCart);
+    dispatch(addTocart(data.data));
   };
+
   const productAddtoFacv = async () => {
     var search = location.search;
     console.log(search);
@@ -75,8 +87,9 @@ function ProductDetail() {
       price: productdetail.price,
       productid: ProductId,
       image: productdetail.image,
+      isFav: !fav,
     };
-    const response = await fetch("http://localhost:5000/favItem/favItem", {
+    const response = await fetch("http://localhost:5000/favItem/add", {
       method: "POST",
       body: JSON.stringify(addProducttofav),
       headers: {
@@ -84,17 +97,38 @@ function ProductDetail() {
         "x-auth-token": token,
       },
     });
-
     const data = await response.json();
-    console.log(data);
+    console.log(data.Favitems);
+    dispatch(addFavitems(data.Favitems));
+    setfav(!fav);
   };
-  console.log(productdetail);
+
+  const getfavProducts = async () => {
+    const response = await fetch(
+      `http://localhost:5000/favItem/isFavorite/${ProductId}`,
+      {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "x-auth-token": token,
+        },
+      }
+    );
+    const data = await response.json();
+    console.log("---------------------- kfklds ------------");
+    console.log(data);
+    console.log(data.isFav);
+    setfav(data.isFav);
+  };
+  // console.log(productdetail);
   useEffect(() => {
     getProductDetailsById();
+    console.log("useeffect called");
+    getfavProducts();
+
     //console.log(itemShow);
   }, [ProductId]);
 
-  const selectQuantity = () => {
+  /* const selectQuantity = () => {
     var arr = [];
 
     for (let i = 1; i <= 20; i++) {
@@ -105,7 +139,7 @@ function ProductDetail() {
       );
     }
     return arr;
-  };
+  };*/
   const showMore = () => {
     setShowMore(!showmore);
   };
@@ -127,13 +161,11 @@ function ProductDetail() {
           </div>
         ) : null}
         <Row>
-          <Col md={6}>
+          <Col md={6} sm={3}>
             <img
               src={productdetail.image}
-              style={{
-                width: "600px",
-                height: "600px",
-              }}
+              alt={productdetail.image}
+              className="product_image"
             />
           </Col>
           <Col md={3}>
@@ -141,7 +173,9 @@ function ProductDetail() {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h4>{productdetail.name}</h4>
+                  <Ratings rating={productdetail.rating} />
                 </ListGroup.Item>
+
                 <ListGroup.Item>
                   <p>Price : ₹{productdetail.price}</p>
                 </ListGroup.Item>
@@ -163,19 +197,33 @@ function ProductDetail() {
             <Card>
               <ListGroup variant="flush">
                 <ListGroup.Item>
+                  <p>Price :₹{productdetail.price}</p>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <p>
+                    Status :
+                    {productdetail.countInStock > 0
+                      ? "In Stock"
+                      : "out of stock"}
+                  </p>
+                </ListGroup.Item>
+                <ListGroup.Item>
                   <div className="quantityContainer">
-                    <label style={{ marginTop: "5px" }}>Quantity:</label>
+                    <label style={{ marginTop: "5px" }}>Qty:</label>
                     <select
                       className="selectBox"
                       onChange={QuantityChange}
                       value={quantity}
                     >
-                      {selectQuantity()}
+                      {[...Array(productdetail.countInStock).keys()].map(
+                        (x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        )
+                      )}
                     </select>
                   </div>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <p>Price :₹{productdetail.price}</p>
                 </ListGroup.Item>
 
                 <ListGroup.Item>
@@ -194,7 +242,12 @@ function ProductDetail() {
                     style={{ backgroundColor: "#6c757d" }}
                     onClick={productAddtoFacv}
                   >
-                    <Link> Add To Favourites</Link>
+                    {fav ? (
+                      <FaHeart style={{ color: "red" }} />
+                    ) : (
+                      <FaRegHeart />
+                    )}
+                    Add To Favourites
                   </Button>
                 </ListGroup.Item>
               </ListGroup>
@@ -203,26 +256,31 @@ function ProductDetail() {
         </Row>
         <div className="second_row">
           <Row>
-            <Col>
-              <h3> Review this product</h3>
-              <p>Share your thoughts with other customers</p>
-              <Button
-                variant="secondary"
-                className="postBtn"
-                style={{ border: "none" }}
-              >
-                <Link to={`/postComment?id=${productdetail._id}`}>
-                  Write a product review
-                </Link>
-              </Button>
+            <Col sm={6}>
+              <div className="writeReview_col">
+                <h3> Review this product</h3>
+                <p>Share your thoughts with other customers</p>
+                <Button
+                  variant="secondary"
+                  className="postBtn"
+                  style={{ border: "none" }}
+                >
+                  <Link to={`/postComment?id=${productdetail._id}`}>
+                    Please sign in to write a review
+                  </Link>
+                </Button>
+              </div>
             </Col>
-            <Col>
-              <h3>Top reviews from India</h3>
-              <Comments productid={productdetail._id} />
+
+            <Col sm={6}>
+              <div className="review_col">
+                <h3>Top reviews from India</h3>
+                <Comments productid={productdetail._id} />
+              </div>
             </Col>
           </Row>
         </div>
-        <div className="second_row">
+        <div className="Third_row">
           <RelatedProducts
             CategoryID={productdetail.categoryId}
             ProductID={productdetail._id}

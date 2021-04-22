@@ -3,12 +3,13 @@ import productReducer from "./reducers/productReducer";
 import userReducer from "./reducers/userReducer";
 import cartReducer from "./reducers/cartReducer";
 import reviewReducer from "./reducers/reviewReducer";
-import quantityReducer from "./reducers/quantityReducer";
+
+import favReducer from "./reducers/favReducer";
 const rootReducer = combineReducers({
   products: productReducer,
   userInfo: userReducer,
   cart: cartReducer,
   review: reviewReducer,
-  qty: quantityReducer,
+  favitem: favReducer,
 });
 export default rootReducer;

@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { getuserLoginDetails } from "../../actions/userActions";
 import { connect } from "react-redux";
 import { useSelector, useDispatch } from "react-redux";
+import { setlist } from "../../actions/cartActions";
 function Login() {
   let history = useHistory();
 
@@ -10,6 +11,7 @@ function Login() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const userinfo = useSelector((state) => state.userInfo);
   console.log(userinfo);
 
@@ -46,6 +48,7 @@ function Login() {
       const data = await response.json();
       console.log(data);
       dispatch(getuserLoginDetails(data));
+
       //save userInfo in localstorage
       localStorage.setItem("userInfo", JSON.stringify(data.user));
       localStorage.setItem("token", JSON.stringify(data.token));
@@ -59,43 +62,54 @@ function Login() {
       history.push("/");
     }
   });
+  useEffect(() => {
+    dispatch(setlist([]));
+  }, []);
 
   return (
-    <div>
-      <form className="signup-form">
-        <h2>Log in</h2>
-        <hr />
-        <div className="form-group">
-          <input
-            type="email"
-            id="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+    <div className="login_main">
+      <div className="login_container">
+        <h5 className="brandName">ProShop.in</h5>
+        <div className="signup-form">
+          <h2>Log in</h2>
+          <hr />
+          <div className="form-group">
+            <label>Email or mobile munber</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <button
+              type="submit"
+              className="btn btn-primary btn-block btn-lg btnlayout"
+              onClick={onChange}
+            >
+              Log in
+            </button>
+          </div>
+          <div className="text-center">
+            Don't have an account?{" "}
+            <Link to="/register" style={{ color: "blue" }}>
+              Register
+            </Link>
+          </div>
         </div>
-        <div className="form-group">
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <button
-            type="submit"
-            className="btn btn-primary btn-block btn-lg"
-            onClick={onChange}
-          >
-            Log in
-          </button>
-        </div>
-        <div className="text-center">
-          Don't have an account? <Link to="/register">Register</Link>
-        </div>
-      </form>
+      </div>
     </div>
   );
 }

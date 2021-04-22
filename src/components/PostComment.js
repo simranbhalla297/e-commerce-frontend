@@ -8,26 +8,26 @@ function PostComment() {
   const [comment, setComment] = useState("");
   const [productid, setProductid] = useState("");
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   var search = location.search;
   let history = useHistory();
-  console.log(history);
+  // console.log(history);
   // console.log(search);
   var ProductId = search.substring(4);
-  console.log(ProductId);
+  // console.log(ProductId);
   var user = JSON.parse(localStorage.getItem("userInfo"));
-  console.log(user);
+  // console.log(user);
   var token = JSON.parse(localStorage.getItem("token"));
-  console.log(token);
+  // console.log(token);
 
   const submitHandler = (e) => {
     e.preventDefault();
     setRating(rating);
     setComment(comment);
     setUserName(username);
-    console.log(comment);
-    console.log(rating);
-    console.log(username);
+    // console.log(comment);
+    // console.log(rating);
+    //console.log(username);
     postComment();
   };
   useEffect(() => {

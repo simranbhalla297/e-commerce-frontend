@@ -5,12 +5,14 @@ import { getReviews } from "../actions/reviewActions";
 import { connect } from "react-redux";
 import Review from "../pages/Review";
 function Comments({ productid }) {
-  console.log(productid);
+  // console.log(productid);
   const dispatch = useDispatch();
   const reviewlist = useSelector((state) => state.review);
-  console.log(reviewlist);
+  //console.log(reviewlist);
   const fetchAllReviews = async (productid) => {
-    console.log("fetch data : ", productid);
+    // console.log("fetch data : ", productid);
+    dispatch(getReviews([]));
+
     var apiurl = "http://localhost:5000/review/reviews";
     let response = await fetch(apiurl, {
       method: "POST",
@@ -25,10 +27,10 @@ function Comments({ productid }) {
     });
     if (response.ok) {
       const json = await response.json();
-      console.log(json);
+      //  console.log(json);
       dispatch(getReviews(json.review));
     } else {
-      console.log("fetch error");
+      // console.log("fetch error");
     }
   };
   useEffect(() => {

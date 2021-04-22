@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 //import { NavbarBrand } from "react-bootstrap";
-import ReactStars from "react-rating-stars-component";
+import { Modal, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+//import ReactStars from "react-rating-stars-component";
 
-function AddProducts() {
+function AddProducts({ handleClose, show }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -71,69 +73,92 @@ function AddProducts() {
   };
   return (
     <>
-      <div>
-        <select value={SelecteCategory} onChange={getSelectedvalue}>
-          {productoption.map((option) => (
-            <option value={option._id} key={option._id}>
-              {option.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "30%",
-        }}
-      >
-        <h2>Add Product</h2>
-        <input
-          type="text"
-          placeholder="product name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="rating"
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-        />
-
-        <input
-          type="text"
-          placeholder="categoryId"
-          value={SelecteCategory}
-          onChange={(e) => setCategory(SelecteCategory)}
-        />
-        <input
-          type="text"
-          placeholder="countInStock"
-          value={stock}
-          onChange={(e) => setStock(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="brand"
-          value={brand}
-          onChange={(e) => setBrand(e.target.value)}
-        />
-
-        <button onClick={onSubmitClick}> Submit</button>
-      </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body>
+          <h2>Add Product</h2>
+          <div>
+            <select value={SelecteCategory} onChange={getSelectedvalue}>
+              {productoption.map((option) => (
+                <option value={option._id} key={option._id}>
+                  {option.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="addProduct_container">
+            <div className="product_input">
+              <input
+                type="text"
+                placeholder="product name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="product_input">
+              <input
+                type="number"
+                placeholder="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+            <div className="product_input">
+              <input
+                type="text"
+                placeholder="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <div className="product_input">
+              <input
+                type="text"
+                placeholder="rating"
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+              />
+            </div>
+            <div className="product_input">
+              <input
+                type="text"
+                placeholder="categoryId"
+                value={SelecteCategory}
+                onChange={(e) => setCategory(SelecteCategory)}
+              />
+            </div>
+            <div className="product_input">
+              <input
+                type="text"
+                placeholder="countInStock"
+                value={stock}
+                onChange={(e) => setStock(e.target.value)}
+              />
+            </div>
+            <div className="product_input">
+              <input
+                type="text"
+                placeholder="brand"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+              />
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <div>
+            <Button className="btn btn-light my-3" onClick={onSubmitClick}>
+              Submit
+            </Button>
+            <Link
+              className="btn btn-light my-3"
+              to="/products"
+              onClick={handleClose}
+            >
+              close
+            </Link>
+          </div>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

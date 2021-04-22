@@ -6,6 +6,10 @@ function RelatedProducts({ CategoryID, ProductID }) {
 
   const [products, setProducts] = useState([]);
   const fetchProducts = async (CategoryID) => {
+    if (!CategoryID) {
+      setProducts([]);
+      return;
+    }
     console.log("fetch data : ", CategoryID);
     var apiurl = "http://localhost:5000/product/products";
     let response = await fetch(apiurl, {
@@ -25,6 +29,8 @@ function RelatedProducts({ CategoryID, ProductID }) {
       const filterProducts = json.products.filter((x) => x._id !== ProductID);
       setProducts(filterProducts);
     } else {
+      setProducts([]);
+
       console.log("fetch error");
     }
   };
@@ -38,10 +44,10 @@ function RelatedProducts({ CategoryID, ProductID }) {
       {products.length == 0 ? (
         "no related products "
       ) : (
-        <div style={{ display: "flex" }}>
+        <div className="related_products">
           {products.map((product) => {
             return (
-              <div>
+              <div className="relatedProduct_container">
                 <ProductCard product={product} />
               </div>
             );

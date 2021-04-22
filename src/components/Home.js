@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ProductCard from "./ProductCard";
 //import { Container } from "react-bootstrap";
 import ImageCarousal from "./ImageCarousal";
+import { setlist } from "../actions/cartActions";
 
 //import ProductCarousel from "../pages/ProductCarousel";
 function Home() {
@@ -14,18 +15,42 @@ function Home() {
   const [selecteCategory, setSelecteCategory] = useState("");
   const [sortedValue, setSortedValue] = useState("");
   const productList = useSelector((state) => state.products);
-  console.log(productList);
+
+  //console.log(productList);
   const userinfo = useSelector((state) => state.userInfo);
-  console.log(userinfo);
+  var token = JSON.parse(localStorage.getItem("token"));
+  //console.log(userinfo);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    getCartList();
     getCategoryList();
     fetchData("", "createdAt");
   }, []);
 
+  const getCartList = async () => {
+    var apiurl = "http://localhost:5000/cartItem/cartItems";
+    let response = await fetch(apiurl, {
+      method: "POST",
+      //send request to server
+      body: JSON.stringify({}),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Accept: "application/json",
+        "x-auth-token": token,
+      },
+    });
+    if (response.ok) {
+      const json = await response.json();
+      console.log(json.cartitems);
+      dispatch(setlist(json.cartitems));
+    } else {
+      // console.log("fetch error");
+    }
+  };
+
   const fetchData = async (categoryId, sortBy) => {
-    console.log("fetch data : ", categoryId);
+    //console.log("fetch data : ", categoryId);
     var apiurl = "http://localhost:5000/product/products";
     let response = await fetch(apiurl, {
       method: "POST",
@@ -41,10 +66,10 @@ function Home() {
     });
     if (response.ok) {
       const json = await response.json();
-      console.log(json.products);
+      //console.log(json.products);
       dispatch(getProducts(json.products));
     } else {
-      console.log("fetch error");
+      // console.log("fetch error");
     }
   };
   const getCategoryList = async () => {
@@ -54,13 +79,13 @@ function Home() {
     if (response.ok) {
       const data = await response.json();
       setProductOption(data.allCategory);
-      console.log(productoption);
+      //console.log(productoption);
     }
   };
   //get category id on click
   const getSelectedvalue = (e) => {
     var selectvalue = e.target.value;
-    console.log("on option selected ", selectvalue);
+    //  console.log("on option selected ", selectvalue);
     setSelecteCategory(selectvalue);
     fetchData(selectvalue);
     setTimeout(() => {}, 1000);
@@ -68,15 +93,15 @@ function Home() {
 
   const sortOnclick = (e) => {
     var selectvalue = e.target.value;
-    console.log("on option selected ", selectvalue);
+    //console.log("on option selected ", selectvalue);
     setSortedValue(selectvalue);
-    console.log(sortedValue);
+    //console.log(sortedValue);
     fetchData(selecteCategory, selectvalue);
   };
 
   return (
     <>
-      <div>
+      <div className="Carousal_container">
         <ImageCarousal />
       </div>
       <div className="select_main">
@@ -104,7 +129,7 @@ function Home() {
       <div className="card-component">
         {productList.map((product, id) => {
           return (
-            <div className="card-wrapper" key={id}>
+            <div className="card-wrapper" key={id} style={{ margin: "3px" }}>
               <ProductCard product={product} />
             </div>
           );
