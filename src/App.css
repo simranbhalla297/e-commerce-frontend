@@ -191,6 +191,19 @@ a {
   height: 200px;
   overflow: hidden;
 }
+.fav_main {
+  width: 80%;
+  margin: auto;
+}
+.inner-fav-container {
+  display: flex;
+}
+.favImage {
+  width: 10%;
+}
+.favText_container h2 {
+  font-size: 16px;
+}
 
 /****cart item*****/
 .cart {

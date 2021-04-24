@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaRegHeart } from "react-icons/fa";
+
 import SearchBox from "./SearchBox";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -43,11 +44,14 @@ function NavBar() {
               <FaShoppingCart />
               Cart
             </NavLink>
+            <NavLink to="/favProducts">
+              <FaRegHeart />
+            </NavLink>
 
             {userinfo.user ? (
               <>
                 <NavLink to="/profile">
-                  Profile{" "}
+                  Profile
                   <span style={{ marginLeft: "5px" }}>
                     ({userinfo.user.user.name})
                   </span>

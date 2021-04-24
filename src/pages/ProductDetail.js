@@ -18,6 +18,8 @@ function ProductDetail() {
   const [fav, setfav] = useState(false);
   // const [itemShow, setitemShow] = useState(200);
   var token = JSON.parse(localStorage.getItem("token"));
+  const userinfo = useSelector((state) => state.userInfo);
+  //var userID = userinfo.user.user.id;
   //console.log(token);
   const location = useLocation();
   //console.log(location);

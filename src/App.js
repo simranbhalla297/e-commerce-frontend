@@ -20,6 +20,7 @@ import { connect } from "react-redux";
 import { setlist } from "./actions/cartActions";
 import Products from "./pages/Products";
 import ProductUpdate from "./pages/ProductUpdate";
+import Favourites from "./pages/Favourites";
 
 //import { useDispatch } from "react-redux";
 import { getuserLoginDetails } from "./actions/userActions";
@@ -88,6 +89,11 @@ function App() {
             show={show}
             handleShow={handleShow}
           />
+        </Route>
+        <Route exact path="/favProducts">
+          <NavBar />
+          <Favourites />
+          <Footer />
         </Route>
         <Route exact path="/profile">
           <NavBar />
