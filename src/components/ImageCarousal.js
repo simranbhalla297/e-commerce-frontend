@@ -1,26 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Carousel, Image } from "react-bootstrap";
-import { useSelector } from "react-redux";
+//import SimpleImageSlider from "react-simple-image-slider";
+//import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+//import BannerImage from "../components/BannerImage";
 function ImageCarousal() {
-  const productList = useSelector((state) => state.products);
-  console.log(productList);
+  const [image, setImage] = useState([]);
+  const fetchData = async () => {
+    //console.log("fetch data : ", categoryId);
+    var apiurl = "http://localhost:5000/banner/productbanner";
+    let response = await fetch(apiurl, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Accept: "application/json",
+      },
+    });
+    if (response.ok) {
+      const json = await response.json();
+      console.log(json.data);
+      setImage(json.data);
+    } else {
+      // console.log("fetch error");
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div>
       <Carousel pause="hover" className="carousal">
-        {productList.map((product) => (
-          <Carousel.Item key={product._id} style={{ padding: "20px" }}>
-            <Link to={`/productDetails?id=${product._id}`}>
-              <Image
-                src={product.image}
-                alt={product.name}
-                style={{ width: "17%", borderRadius: "50%" }}
-              />
-              <Carousel.Caption>
-                <h3>
-                  {product.name} (₹{product.price})
-                </h3>
-              </Carousel.Caption>
+        {image.map((imagelist) => (
+          <Carousel.Item key={imagelist._id}>
+            <Link to={`/imagelistDetails?id=${imagelist._id}`}>
+              <div className="carousalImage-container">
+                <Image
+                  src={imagelist.image}
+                  alt={imagelist.image}
+                  className="carousalImage"
+                />
+              </div>
             </Link>
           </Carousel.Item>
         ))}

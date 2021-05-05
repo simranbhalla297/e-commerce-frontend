@@ -15,7 +15,7 @@ function AddProducts({ handleClose, show }) {
   const [productoption, setProductOption] = useState([]);
   const [SelecteCategory, setSelecteCategory] = useState("");
 
-  async function addCategory() {
+  async function addProduct() {
     const addProduct = {
       name: name,
       price: price,
@@ -45,7 +45,7 @@ function AddProducts({ handleClose, show }) {
     setCategory(category);
     setStock(stock);
     setBrand(brand);
-    addCategory();
+    addProduct();
     console.log(
       `${name} ${price} ${description} ${rating} ${category} ${stock} ${brand}`
     );

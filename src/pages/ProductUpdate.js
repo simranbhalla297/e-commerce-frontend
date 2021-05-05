@@ -3,6 +3,7 @@ import { Form, Button, Modal } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 //import { updateProduct } from "../actions/productActions";
 //import { useHistory } from "react-router-dom";
+
 function ProductUpdate({ handleClose, show }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);

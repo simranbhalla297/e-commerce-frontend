@@ -17,21 +17,22 @@ import AddProducts from "./components/AddProducts";
 import PostComment from "./components/PostComment";
 import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
-import { setlist } from "./actions/cartActions";
+//import { setlist } from "./actions/cartActions";
 import Products from "./pages/Products";
 import ProductUpdate from "./pages/ProductUpdate";
 import Favourites from "./pages/Favourites";
-
+import BannerImage from "./components/BannerImage";
+import EditProfile from "./components/EditProfile";
 //import { useDispatch } from "react-redux";
 import { getuserLoginDetails } from "./actions/userActions";
 function App() {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
-  var token = JSON.parse(localStorage.getItem("token"));
+  //var token = JSON.parse(localStorage.getItem("token"));
   // console.log(token);
   useEffect(() => {
     getDatafromLocalSTorage();
-  }, []);
+  });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   async function getDatafromLocalSTorage() {
@@ -62,7 +63,16 @@ function App() {
         </Route>
         <Route exact path="/productDetails">
           <NavBar />
-          <ProductDetail />
+          <ProductDetail
+            handleClose={handleClose}
+            show={show}
+            handleShow={handleShow}
+          />
+          <Footer />
+        </Route>
+        <Route exact path="/bannerImage">
+          <NavBar />
+          <BannerImage />
           <Footer />
         </Route>
         <Route exact path="/addProducts">
@@ -83,6 +93,7 @@ function App() {
           />
           <Footer />
         </Route>
+
         <Route exact path="/productUpdate">
           <ProductUpdate
             handleClose={handleClose}
@@ -98,6 +109,11 @@ function App() {
         <Route exact path="/profile">
           <NavBar />
           <Profile />
+          <Footer />
+        </Route>
+        <Route exact path="/editprofile">
+          <NavBar />
+          <EditProfile />
           <Footer />
         </Route>
         <Route exact path="/img">

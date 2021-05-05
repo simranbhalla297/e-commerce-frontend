@@ -2,7 +2,60 @@
   margin: 0;
   padding: 0;
 }
+.detail_box {
+  display: none;
+  opacity: 1;
+}
+.main_row {
+  width: 70%;
+  margin: 4% auto 1%;
+}
 
+.latestProduct_heading {
+  text-transform: capitalize;
+  margin-left: 5%;
+}
+.favText_container:hover + .detail_box {
+  display: block;
+  color: green;
+  font-size: 16px;
+  width: 300px;
+  margin-left: -100px;
+  float: left;
+  border: 1px solid #c3c4c4;
+  background-color: #fff;
+  padding: 14px 18px;
+  text-align: left;
+  box-shadow: 4px 10px 10px 0px rgba(211, 208, 208, 0.75);
+}
+
+.main_card {
+  background-color: #fff;
+}
+.home_page {
+  background-color: #f4f6f6;
+}
+.login {
+  text-decoration: none;
+  margin-right: 30px;
+  color: black;
+
+  background-color: #f4f6f6;
+  padding: 5px;
+  width: 90px;
+  text-align: center;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+
+  /* margin-top: 10px; */
+}
 .login_container {
   width: 20%;
   margin: auto;
@@ -31,35 +84,82 @@
   padding-top: 5px;
   margin-top: 10px;
 }
-.btnlayout {
+.favbtn_container .btnlayout {
   padding: 4px;
 }
 /***styling navbar****/
 
 a {
   color: #fff;
-
+  text-decoration: none;
   margin-left: 15px;
 }
+.navbar-collapse {
+  flex-basis: 100%;
 
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.dropdown-item {
+  display: block;
+  width: 80% !important;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+.navbar-nav a {
+  text-decoration: none;
+}
+
+.btn-block {
+  background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+  border-color: #a88734 #9c7e31 #846a29;
+  color: black;
+  transition: background-color 2s;
+}
+
+.btn-block:hover {
+  background-color: #e9a908;
+  border-color: #a88734 #9c7e31 #846a29;
+
+  color: black;
+}
 /*****home page***/
 .select_main {
   display: flex;
-  justify-content: space-around;
-  margin: 5%;
+  justify-content: flex-end;
+  margin-right: 5%;
+  margin-top: 2px;
+}
+.select_option {
+  margin-right: 5%;
+}
+select {
+  padding: 5px;
 }
 
 .card-component {
   display: flex;
   flex-wrap: wrap;
   width: 80%;
-  margin: 5% auto;
+  margin: 1% auto;
+
+  align-items: center;
+  justify-content: center;
 }
 
 .card_container {
   width: 18rem;
   height: 540px;
-  border: 1px solid #eaeded;
+  border-bottom: 4px solid #eaeded;
 }
 .text_container {
   padding: 10px;
@@ -86,35 +186,41 @@ a {
   width: 100%;
   height: 300px;
 }
+.img_box {
+  width: 90%;
+}
 .carousel-caption {
   position: absolute;
   top: 0;
 }
 
 .carousal {
-  background-color: #343a40;
   display: flex;
   flex-direction: column;
-  padding: 10%;
+
   overflow-y: hidden;
 }
 .carousel-inner {
   position: relative;
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
+  width: 100%;
+  margin: 2% auto;
 
-  /* height: 30%; */
-  height: 30vh;
+  overflow: hidden;
 }
 
 .carousel img {
-  height: 200px;
-
-  border-radius: 50%;
+  width: 100%;
+  height: 350px;
+  display: block;
   margin-left: auto;
   margin-right: auto;
 }
+.carousalImage-container {
+  width: 95%;
+  height: fixed;
+  margin: auto;
+}
+
 .carousel-caption {
   position: absolute;
   right: 15%;
@@ -129,6 +235,7 @@ a {
   color: #fff;
   text-align: center;
 }
+
 .addProduct_container {
   display: flex;
   flex-direction: column;
@@ -145,6 +252,90 @@ a {
 .Product_container {
   width: 90%;
   margin: 10px auto;
+}
+
+/****profile page*****/
+/****profile page*****/
+/****profile page*****/
+.profile {
+  background-color: #f1f3f6;
+}
+.profile_box {
+  padding: 10px;
+  width: 80%;
+
+  margin: auto;
+}
+
+.profile_container {
+  margin: 20px;
+  background-color: #fff;
+  padding: 28px;
+}
+.profile_icon {
+  margin: 20px;
+  background: linear-gradient(to right, #ff5d3b 0, #ff2c65 100%);
+  background-color: #fff;
+  color: #fff;
+  box-shadow: 0 4px 8px -4px rgb(0 0 0 / 10%);
+}
+.profie-text_container {
+  margin-top: 10px;
+  padding: 10px;
+}
+.profie-text_container p {
+  margin-right: 5px;
+}
+.profile_list {
+  color: black;
+  padding: 0;
+}
+.profile_image {
+  padding-top: 10px;
+  margin-left: 10px;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.profile_information {
+  padding: 10px;
+}
+.profile_information p {
+  margin-top: 12px;
+}
+.profilebtn {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  padding: 10px;
+}
+.buttonProfile {
+  background: linear-gradient(to right, #ff5d3b 0, #ff2c65 100%);
+  color: #fff;
+  padding: 10px;
+  width: 17%;
+  border: none;
+}
+.buttonProfile:hover {
+  background: black;
+}
+
+.edit_btns {
+  margin-bottom: 20px;
+}
+
+.saveBtn {
+  margin-right: 20px;
+  border-radius: 0;
+  width: 171px;
+  border: none;
+  background: linear-gradient(to right, #ff5d3b 0, #ff2c65 100%);
+}
+.cancelBtn {
+  border-radius: 0;
+  border: none;
+  background: black;
+  width: 171px;
 }
 /**product detail page**/
 .container,
@@ -191,20 +382,35 @@ a {
   height: 200px;
   overflow: hidden;
 }
-.fav_main {
-  width: 80%;
-  margin: auto;
+/**************favourite page***************/
+/**************favourite page***************/
+/**************favourite page***************/
+.fav_inner {
+  width: 70%;
+  margin: 2% auto;
+  padding: 20px;
+  border: 1px solid #eaeded;
 }
-.inner-fav-container {
-  display: flex;
+
+.fav_container {
+  margin-top: 20px;
+}
+.favImage-container {
+  width: 100%;
 }
 .favImage {
-  width: 10%;
+  width: 60%;
 }
 .favText_container h2 {
   font-size: 16px;
 }
-
+.favitem_container {
+  padding: 10px;
+  border-bottom: 1px solid #eaeded;
+}
+.dropdown {
+  font-size: 16px;
+}
 /****cart item*****/
 .cart {
   display: grid;
@@ -258,6 +464,7 @@ a {
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
   cursor: pointer;
+  margin-top: 20px;
 }
 .proccedTocart:hover {
   border: 1px solid transparent;
@@ -295,23 +502,66 @@ a {
   margin: 5px;
 }
 .Carousal_container {
-  width: 95%;
-  margin: 2% auto;
+  width: 100%;
+  margin: auto;
 }
 
 .product_image {
   width: 600px;
   height: 600px;
+  cursor: pointer;
 }
-
+.modal-dialog {
+  max-width: 800px !important;
+  margin: 1.75rem auto;
+}
+.zoom_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+}
+.Zoom-btn {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(50%, 50%);
+}
+.close_icon {
+  float: right;
+  margin: 20px;
+  cursor: pointer;
+}
+.carousel-indicators {
+  display: none;
+}
+.Zoom_image {
+  width: 400px;
+}
 @media only screen and (max-width: 600px) {
+  .Carousal_container {
+    width: 100%;
+    margin: auto;
+  }
+  .carousel img {
+    width: 100%;
+    height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .carousel-indicators {
+    display: none;
+  }
   .card_container {
     width: 10rem;
-    height: 480px;
-    border: 1px solid #eaeded;
+    height: 420px;
+    border-bottom: 3px solid #eaeded;
   }
   .img_container {
-    width: 100px;
+    width: 90%;
     height: 150px;
   }
   .product_link {
@@ -324,24 +574,27 @@ a {
   .card-component {
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
+    width: 90%;
+
     margin: 10% auto;
-    justify-content: center;
   }
   .carousal {
-    background-color: black;
     display: flex;
-    padding: 5%;
 
     overflow-y: hidden;
   }
   .carousel img {
-    height: 50px;
-    width: 100px;
-    border-radius: 20%;
+    height: 200px;
+    width: 100%;
+    margin-bottom: 80px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+  }
+  .carousel-inner {
+    position: relative;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
   }
   .carousel-caption h3 {
     font-size: 12px;
@@ -393,5 +646,19 @@ a {
   .related_products {
     display: flex;
     justify-content: center;
+  }
+  .favImage {
+    width: 100%;
+  }
+  .favImage-container-col {
+    margin-right: 10px;
+  }
+  .favbtn_container_col {
+    margin-top: 30px;
+  }
+  .fav_inner {
+    width: 80%;
+    margin: 2% auto;
+    padding: 2px;
   }
 }

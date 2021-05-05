@@ -12,7 +12,7 @@ const favReducer = (state = IntialState, action) => {
     case SET_FAVLIST:
       return action.payload;
     case REMOVE:
-      return state.filter((x) => x._id !== action.payload);
+      return state.filter((x) => x.productid !== action.payload);
     default:
       // this is fine.
       return state;

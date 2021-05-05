@@ -18,6 +18,8 @@
     "react-responsive-carousel": "^3.2.13",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "react-simple-image-slider": "^2.1.0",
+    "react-zoom-pan-pinch": "^1.6.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "web-vitals": "^1.0.1"

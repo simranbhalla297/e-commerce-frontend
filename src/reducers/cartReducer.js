@@ -10,12 +10,12 @@ const cartReducer = (state = initialState, action) => {
       return [];
     case ADD_TO_CART:
       const item = action.payload;
-      console.log(item);
+      // console.log(item);
       //find if item exists
-      console.log(state);
+      //console.log(state);
 
       const existItem = state.find((x) => x._id === item._id);
-      console.log(existItem);
+      // console.log(existItem);
 
       if (!existItem) {
         return [...state, item];
