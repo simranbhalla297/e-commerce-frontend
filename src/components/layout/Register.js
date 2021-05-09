@@ -56,7 +56,7 @@ function Register() {
           <input
             type="text"
             id="name"
-            placeholder="Name"
+            placeholder="last name"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
           />
