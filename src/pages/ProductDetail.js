@@ -4,6 +4,7 @@ import { addTocart } from "../actions/cartActions";
 import { addFavitems, remove } from "../actions/favActions";
 import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
+import { BASE_URL } from "../Variables";
 import {
   FaHeart,
   FaRegHeart,
@@ -50,7 +51,7 @@ function ProductDetail({ handleShow, handleClose, show }) {
     //console.log(search);
     var ProductId = search.substring(4);
     //console.log(ProductId);
-    var apiurl = `http://localhost:5000/product/product/${ProductId}`;
+    var apiurl = `${BASE_URL}/product/product/${ProductId}`;
     let response = await fetch(apiurl);
     if (response.ok) {
       const json = await response.json();
@@ -75,7 +76,7 @@ function ProductDetail({ handleShow, handleClose, show }) {
       productid: ProductId,
       image: productdetail.image,
     };
-    const response = await fetch("http://localhost:5000/cartItem/cartItem", {
+    const response = await fetch(`${BASE_URL}/cartItem/cartItem`, {
       method: "POST",
       body: JSON.stringify(addProducttocart),
       headers: {
@@ -103,7 +104,7 @@ function ProductDetail({ handleShow, handleClose, show }) {
       isFav: !fav,
     };
     console.log(addProducttofav);
-    const response = await fetch("http://localhost:5000/favItem/add", {
+    const response = await fetch(`${BASE_URL}/favItem/add`, {
       method: "POST",
       body: JSON.stringify(addProducttofav),
       headers: {
@@ -124,7 +125,7 @@ function ProductDetail({ handleShow, handleClose, show }) {
 
   const getfavProducts = async () => {
     const response = await fetch(
-      `http://localhost:5000/favItem/isFavorite/${ProductId}`,
+      `${BASE_URL}/favItem/isFavorite/${ProductId}`,
       {
         headers: {
           "Content-type": "application/json; charset=UTF-8",

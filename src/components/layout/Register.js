@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../../Variables";
 function Register() {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -25,7 +26,7 @@ function Register() {
     };
     console.log(registerUserDetails);
 
-    const response = await fetch("http://localhost:5000/auth/register", {
+    const response = await fetch(`${BASE_URL}/auth/register`, {
       method: "POST",
       body: JSON.stringify(registerUserDetails),
       headers: {

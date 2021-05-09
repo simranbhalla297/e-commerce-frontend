@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useLocation, useHistory } from "react-router-dom";
-
+import { BASE_URL } from "../Variables";
 function PostComment() {
   const [rating, setRating] = useState();
   const [username, setUserName] = useState("");
@@ -47,7 +47,7 @@ function PostComment() {
       comment: comment,
       productId: productid,
     };
-    fetch("http://localhost:5000/review/review", {
+    fetch(`${BASE_URL}/review/review`, {
       method: "POST",
       body: JSON.stringify(updateduserDetail),
       headers: {

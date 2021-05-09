@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
+import { BASE_URL } from "../Variables";
 function RelatedProducts({ CategoryID, ProductID }) {
   console.log(CategoryID);
   console.log(ProductID);
@@ -11,7 +12,7 @@ function RelatedProducts({ CategoryID, ProductID }) {
       return;
     }
     console.log("fetch data : ", CategoryID);
-    var apiurl = "http://localhost:5000/product/products";
+    var apiurl = `${BASE_URL}/product/products`;
     let response = await fetch(apiurl, {
       method: "POST",
       //send request to server

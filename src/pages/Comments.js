@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getReviews } from "../actions/reviewActions";
 import { connect } from "react-redux";
 import Review from "../pages/Review";
+import { BASE_URL } from "../Variables";
 function Comments({ productid }) {
   // console.log(productid);
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ function Comments({ productid }) {
     // console.log("fetch data : ", productid);
     dispatch(getReviews([]));
 
-    var apiurl = "http://localhost:5000/review/reviews";
+    var apiurl = `${BASE_URL}/review/reviews`;
     let response = await fetch(apiurl, {
       method: "POST",
       //send request to server

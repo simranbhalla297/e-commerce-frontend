@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-
+import { BASE_URL } from "../Variables";
 export default function BannerImage() {
   const [image, setImage] = useState([]);
   const fetchData = async () => {
     //console.log("fetch data : ", categoryId);
-    var apiurl = "http://localhost:5000/banner/productbanner";
+    var apiurl = `${BASE_URL}/banner/productbanner`;
     let response = await fetch(apiurl, {
       method: "GET",
       headers: {

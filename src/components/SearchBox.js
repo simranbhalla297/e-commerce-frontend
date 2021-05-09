@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { BASE_URL } from "../Variables";
 const SearchBox = () => {
   const [keyword, setKeyword] = useState("");
   const productList = useSelector((state) => state.products);
@@ -14,7 +15,7 @@ const SearchBox = () => {
 
   const fetchData = async (keyword) => {
     console.log("fetch data : ", keyword);
-    var apiurl = "http://localhost:5000/product/products";
+    var apiurl = `${BASE_URL}/product/products`;
     let response = await fetch(apiurl, {
       method: "POST",
       //send request to server

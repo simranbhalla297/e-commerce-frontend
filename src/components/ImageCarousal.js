@@ -3,12 +3,13 @@ import { Carousel, Image } from "react-bootstrap";
 //import SimpleImageSlider from "react-simple-image-slider";
 //import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../Variables";
 //import BannerImage from "../components/BannerImage";
 function ImageCarousal() {
   const [image, setImage] = useState([]);
   const fetchData = async () => {
     //console.log("fetch data : ", categoryId);
-    var apiurl = "http://localhost:5000/banner/productbanner";
+    var apiurl = `${BASE_URL}/banner/productbanner`;
     let response = await fetch(apiurl, {
       method: "GET",
       headers: {

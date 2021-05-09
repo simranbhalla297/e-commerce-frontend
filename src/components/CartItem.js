@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "react-redux";
 import { setlist } from "../actions/cartActions";
 import SingleCartitem from "../components/SingleCartitem";
+import { BASE_URL } from "../Variables";
 function CartItem() {
   const dispatch = useDispatch();
   var token = JSON.parse(localStorage.getItem("token"));
@@ -10,7 +11,7 @@ function CartItem() {
   const cartList = useSelector((state) => state.cart);
 
   const getCartList = async () => {
-    var apiurl = "http://localhost:5000/cartItem/cartItems";
+    var apiurl = `${BASE_URL}/cartItem/cartItems`;
     let response = await fetch(apiurl, {
       method: "POST",
       //send request to server

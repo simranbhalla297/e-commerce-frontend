@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Button, Form, Row, Col, ListGroup } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
+import { BASE_URL } from "../Variables";
 import firebase from "../Firebase.js";
 function EditProfile() {
   const [firstname, setFirstName] = useState("");
@@ -29,7 +30,7 @@ function EditProfile() {
       history.push("/login");
     }
     async function getUserdetail() {
-      const response = await fetch(`http://localhost:5000/auth/user`, {
+      const response = await fetch(`${BASE_URL}/auth/user`, {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           "x-auth-token": token,
@@ -86,7 +87,7 @@ function EditProfile() {
       phone: phone,
       address: address,
     };
-    fetch("http://localhost:5000/auth/profile", {
+    fetch(`${BASE_URL}/auth/profile`, {
       method: "POST",
       body: JSON.stringify(updateduserDetail),
       headers: {

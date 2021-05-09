@@ -3,6 +3,7 @@ import { Form, Button, Modal } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 //import { updateProduct } from "../actions/productActions";
 //import { useHistory } from "react-router-dom";
+import { BASE_URL } from "../Variables";
 
 function ProductUpdate({ handleClose, show }) {
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ function ProductUpdate({ handleClose, show }) {
     const getProductDetailById = async () => {
       console.log(ProductId);
 
-      var apiurl = `http://localhost:5000/product/product/${ProductId}`;
+      var apiurl = `${BASE_URL}/product/product/${ProductId}`;
       let response = await fetch(apiurl);
       if (response.ok) {
         const json = await response.json();
@@ -47,7 +48,7 @@ function ProductUpdate({ handleClose, show }) {
       countInStock: countInStock,
       description: description,
     };
-    fetch(`http://localhost:5000/product/product/${ProductId}`, {
+    fetch(`${BASE_URL}/product/product/${ProductId}`, {
       method: "POST",
       body: JSON.stringify(updateProduct),
       headers: {

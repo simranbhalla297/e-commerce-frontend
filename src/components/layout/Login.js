@@ -4,6 +4,7 @@ import { getuserLoginDetails } from "../../actions/userActions";
 import { connect } from "react-redux";
 import { useSelector, useDispatch } from "react-redux";
 import { setlist } from "../../actions/cartActions";
+import { BASE_URL } from "../../Variables";
 function Login() {
   let history = useHistory();
 
@@ -32,7 +33,7 @@ function Login() {
     };
     console.log(loginuserDetails);
 
-    const response = await fetch("http://localhost:5000/auth/login", {
+    const response = await fetch(`${BASE_URL}/auth/login`, {
       method: "POST",
       body: JSON.stringify(loginuserDetails),
       headers: {

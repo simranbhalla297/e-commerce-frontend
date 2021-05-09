@@ -8,9 +8,10 @@ import { Row, Col } from "react-bootstrap";
 import ImageCarousal from "./ImageCarousal";
 import { setlist } from "../actions/cartActions";
 import { getuserLoginDetails } from "../actions/userActions";
-
+import { BASE_URL } from "../Variables";
 //import ProductCarousel from "../pages/ProductCarousel";
 function Home() {
+  console.log(BASE_URL);
   let history = useHistory();
   const [productoption, setProductOption] = useState([]);
   const [selecteCategory, setSelecteCategory] = useState("");
@@ -22,16 +23,17 @@ function Home() {
   var token = JSON.parse(localStorage.getItem("token"));
   //console.log(userinfo);
   const dispatch = useDispatch();
-
+  //const BASE_URL = process.env.REACT_APP_BASE_URL;
   useEffect(() => {
     getCartList();
     getCategoryList();
     fetchData("", "createdAt");
     getUserdetail();
+    console.log(BASE_URL);
   }, []);
 
   async function getUserdetail() {
-    const response = await fetch("http://localhost:5000/auth/login", {
+    const response = await fetch(`${BASE_URL}/auth/login`, {
       method: "POST",
 
       headers: {
@@ -53,7 +55,7 @@ function Home() {
   }
 
   const getCartList = async () => {
-    var apiurl = "http://localhost:5000/cartItem/cartItems";
+    var apiurl = `${BASE_URL}/cartItem/cartItems`;
     let response = await fetch(apiurl, {
       method: "POST",
       //send request to server
@@ -75,7 +77,8 @@ function Home() {
 
   const fetchData = async (categoryId, sortBy) => {
     //console.log("fetch data : ", categoryId);
-    var apiurl = "http://localhost:5000/product/products";
+    var apiurl = `${BASE_URL}/product/products`;
+
     let response = await fetch(apiurl, {
       method: "POST",
       //send request to server
@@ -97,7 +100,7 @@ function Home() {
     }
   };
   const getCategoryList = async () => {
-    var apiurl = "http://localhost:5000/category/category";
+    var apiurl = `${BASE_URL}/category/category`;
     let response = await fetch(apiurl);
 
     if (response.ok) {
@@ -122,6 +125,9 @@ function Home() {
     //console.log(sortedValue);
     fetchData(selecteCategory, selectvalue);
   };
+  const onPriceClick = (e) => {
+    console.log(e.target.value);
+  };
 
   return (
     <div>
@@ -131,53 +137,63 @@ function Home() {
             <div className="Carousal_container">
               <ImageCarousal />
             </div>
+            <Row>
+              <Col>
+                <div className="main_row">
+                  <Row>
+                    <Col>
+                      <div className="latestProduct_heading">
+                        <h3>Latest products</h3>
+                      </div>
+                    </Col>
+                    <Col>
+                      <div className="select_main">
+                        <div className="select_option">
+                          <select
+                            onChange={getSelectedvalue}
+                            className="options"
+                          >
+                            <option value="">All</option>
+                            {productoption.map((option) => (
+                              <option value={option._id} key={option._id}>
+                                {option.name}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        <div className="Sort_option">
+                          <select onChange={sortOnclick} className="options">
+                            <option value=""> Featured</option>
+                            <option value="createdAt">Newest Arrival</option>
+                            <option value="price">Price: High to Low</option>
+                            <option value="price-low">
+                              Price: Low to High
+                            </option>
+                            <option value="rating">Rating: Rating</option>
+                          </select>
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
+                </div>
 
-            <div className="main_row">
-              <Row>
-                <Col>
-                  <div className="latestProduct_heading">
-                    <h3>Latest products</h3>
-                  </div>
-                </Col>
-                <Col>
-                  <div className="select_main">
-                    <div className="select_option">
-                      <select onChange={getSelectedvalue}>
-                        <option value="">All</option>
-                        {productoption.map((option) => (
-                          <option value={option._id} key={option._id}>
-                            {option.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="Sort_option">
-                      <select onChange={sortOnclick}>
-                        <option value="createdAt">sort by latest</option>
-                        <option value="price">sort by price</option>
-                        <option value="rating">sort by rating</option>
-                      </select>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </div>
+                {/*<h1>{selecteCategory}</h1>*/}
 
-            {/*<h1>{selecteCategory}</h1>*/}
-
-            <div className="card-component">
-              {productList.map((product, id) => {
-                return (
-                  <div
-                    className="card-wrapper"
-                    key={id}
-                    style={{ margin: "20px" }}
-                  >
-                    <ProductCard product={product} />
-                  </div>
-                );
-              })}
-            </div>
+                <div className="card-component">
+                  {productList.map((product, id) => {
+                    return (
+                      <div
+                        className="card-wrapper"
+                        key={id}
+                        style={{ margin: "20px" }}
+                      >
+                        <ProductCard product={product} />
+                      </div>
+                    );
+                  })}
+                </div>
+              </Col>
+            </Row>
           </div>
         </div>
       </div>

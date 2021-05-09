@@ -4,6 +4,7 @@ import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getProducts, removeProduct } from "../actions/productActions";
 import { useSelector, useDispatch } from "react-redux";
+import { BASE_URL } from "../Variables";
 //import ProductUpdate from "../pages/ProductUpdate";
 function Products({ handleShow }) {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ function Products({ handleShow }) {
 
   const fetchData = async () => {
     //console.log("fetch data : ", categoryId);
-    var apiurl = "http://localhost:5000/product/products";
+    var apiurl = `${BASE_URL}/product/products`;
     let response = await fetch(apiurl, {
       method: "POST",
       headers: {

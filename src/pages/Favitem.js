@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Button, Row, Col } from "react-bootstrap";
+import { Button, Row, Col, OverlayTrigger } from "react-bootstrap";
 import { remove } from "../actions/favActions";
 import { addTocart } from "../actions/cartActions";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import Details from "./Details";
-
+import { BASE_URL } from "../Variables";
 export default function Favitem({ data }) {
   const [alreadyincart, setAlreadyincart] = useState(false);
+  const [show, setShow] = useState(false);
+  //const [Hide, setHide] = useState(false);
   const dispatch = useDispatch();
 
   var productid = data.productid;
@@ -23,7 +25,7 @@ export default function Favitem({ data }) {
     removeProductfromfavList(id);
   };
   const removeProductfromfavList = async (id) => {
-    var apiurl = `http://localhost:5000/favItem/favItem/${id}`;
+    var apiurl = `${BASE_URL}/favItem/favItem/${id}`;
     let response = await fetch(apiurl, {
       method: "DELETE",
       headers: {
@@ -75,7 +77,7 @@ export default function Favitem({ data }) {
     } else {
       setAlreadyincart(false);
     }
-  }, []);
+  }, [cartlist]);
   return (
     <div className="favitem_container">
       <Row>
@@ -87,13 +89,16 @@ export default function Favitem({ data }) {
           </div>
         </Col>
         <Col md={4}>
-          <div className="favText_container">
+          <div className="favText_container" onMouseEnter={() => setShow(true)}>
             <h2>{data.productname}</h2>
             <h2> ₹{data.price}</h2>
           </div>
-          <div className="detail_box">
-            <Details data={data} />
-          </div>
+          {show ? (
+            <div className="detail_box" onMouseLeave={() => setShow(false)}>
+              <div className="arrow"></div>
+              {data ? <Details data={data} /> : <h2>loading....</h2>}
+            </div>
+          ) : null}
         </Col>
         {alreadyincart ? (
           <Col md={6} className="favbtn_container_col">

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { BASE_URL } from "../Variables";
 function AddCategory() {
   const [addcategory, setAddcategory] = useState("");
 
@@ -8,7 +9,7 @@ function AddCategory() {
     const category = {
       name: addcategory,
     };
-    const response = await fetch("http://localhost:5000/category/category", {
+    const response = await fetch(`${BASE_URL}/category/category`, {
       method: "POST",
       body: JSON.stringify(category),
       headers: {

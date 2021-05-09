@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 //import { NavbarBrand } from "react-bootstrap";
 import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../Variables";
 //import ReactStars from "react-rating-stars-component";
 
 function AddProducts({ handleClose, show }) {
@@ -25,7 +26,7 @@ function AddProducts({ handleClose, show }) {
       countInStock: stock,
       brand: brand,
     };
-    const response = await fetch("http://localhost:5000/product/product", {
+    const response = await fetch(`${BASE_URL}/product/product`, {
       method: "POST",
       body: JSON.stringify(addProduct),
       headers: {
@@ -57,7 +58,7 @@ function AddProducts({ handleClose, show }) {
 
   //product id
   const fetchproductId = async () => {
-    var apiurl = "http://localhost:5000/category/category";
+    var apiurl = `${BASE_URL}/category/category`;
     let response = await fetch(apiurl);
     if (response.ok) {
       const data = await response.json();

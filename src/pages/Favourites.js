@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import Favitem from "./Favitem";
+import { BASE_URL } from "../Variables";
 function Favourites() {
   let history = useHistory();
   const user = useSelector((state) => state.userInfo);
@@ -14,7 +15,7 @@ function Favourites() {
   var token = JSON.parse(localStorage.getItem("token"));
   const dispatch = useDispatch();
   const getfavProducts = async () => {
-    const response = await fetch("http://localhost:5000/favItem/favItem", {
+    const response = await fetch(`${BASE_URL}/favItem/favItem`, {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
