@@ -182,11 +182,7 @@ function Home() {
                 <div className="card-component">
                   {productList.map((product, id) => {
                     return (
-                      <div
-                        className="card-wrapper"
-                        key={id}
-                        style={{ margin: "20px" }}
-                      >
+                      <div className="card-wrapper" key={id}>
                         <ProductCard product={product} />
                       </div>
                     );

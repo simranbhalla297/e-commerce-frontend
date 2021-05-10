@@ -95,17 +95,16 @@ function Login() {
             />
           </div>
           <div className="form-group">
-            <button
-              type="submit"
-              className="btn btn-primary btn-block btn-lg btnlayout"
-              onClick={onChange}
-            >
+            <button type="submit" className="logInbtn" onClick={onChange}>
               Log in
             </button>
           </div>
           <div className="text-center">
             Don't have an account?{" "}
-            <Link to="/register" style={{ color: "blue" }}>
+            <Link
+              to="/register"
+              style={{ color: "blue", textDecoration: "none" }}
+            >
               Register
             </Link>
           </div>

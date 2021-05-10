@@ -4,10 +4,9 @@ import { NavLink } from "react-router-dom";
 import { FaShoppingCart, FaRegHeart, FaUserCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import SearchBox from "./SearchBox";
+//import SearchBox from "./SearchBox";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Redirect } from "react-router";
 
 function NavBar() {
   let history = useHistory();
@@ -38,7 +37,6 @@ function NavBar() {
             </NavLink>
           </Navbar.Brand>
 
-          <SearchBox />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
@@ -84,8 +82,8 @@ function NavBar() {
                 }}
               >
                 <div style={{ display: "flex" }}>
-                  {cartList.length == 0 ? null : <h4>{cartList.length}</h4>}
-                  <FaShoppingCart size="30px" color="#fff" /> Cart
+                  {cartList.length == 0 ? null : <p>{cartList.length}</p>}
+                  <FaShoppingCart size="25" color="#fff" /> Cart
                 </div>
               </NavLink>
               {userinfo && user && user.user ? (
