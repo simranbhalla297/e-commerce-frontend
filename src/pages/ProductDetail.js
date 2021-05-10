@@ -28,6 +28,8 @@ function ProductDetail({ handleShow, handleClose, show }) {
   const [showmore, setShowMore] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [fav, setfav] = useState(false);
+  const reviewlist = useSelector((state) => state.review);
+  console.log(reviewlist);
   // const [itemShow, setitemShow] = useState(200);
   var token = JSON.parse(localStorage.getItem("token"));
   const userinfo = useSelector((state) => state.userInfo);
@@ -202,7 +204,9 @@ function ProductDetail({ handleShow, handleClose, show }) {
               <Card style={{ border: "none", boxShadow: "none" }}>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
-                    <h4>{productdetail.name}</h4>
+                    <h4 className="productDetail_Heading">
+                      {productdetail.name}
+                    </h4>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Ratings rating={productdetail.rating} />
@@ -217,7 +221,10 @@ function ProductDetail({ handleShow, handleClose, show }) {
                         showmore ? "ShowMoreContent" : "ShowLessContent"
                       }
                     >
-                      Description : {productdetail.description}
+                      <p className="description">
+                        {" "}
+                        Description : {productdetail.description}
+                      </p>
                     </div>
 
                     <p onClick={showMore} style={{ cursor: "pointer" }}>
@@ -239,7 +246,7 @@ function ProductDetail({ handleShow, handleClose, show }) {
                 </ListGroup>
               </Card>
             </Col>
-            <Col>
+            <Col className="productCardQty">
               <Card>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
@@ -263,6 +270,7 @@ function ProductDetail({ handleShow, handleClose, show }) {
                   <ListGroup.Item>
                     <div className="quantityContainer">
                       <label style={{ marginTop: "5px" }}>Qty:</label>
+
                       <span style={{ marginLeft: "30px" }}>
                         <select
                           className="selectBox"
@@ -305,7 +313,7 @@ function ProductDetail({ handleShow, handleClose, show }) {
                       {fav ? (
                         <FaHeart style={{ color: "red" }} />
                       ) : (
-                        <FaRegHeart size="20px" />
+                        <FaRegHeart size="25px" />
                       )}
                       <span style={{ marginLeft: "10px" }}>
                         Add To Favourites
@@ -316,11 +324,12 @@ function ProductDetail({ handleShow, handleClose, show }) {
               </Card>
             </Col>
           </Row>
+          <hr />
           <div className="second_row">
             <Row>
               <Col sm={6}>
                 <div className="writeReview_col">
-                  <h3> Review this product</h3>
+                  <h3 className="Review_heading"> Review this product</h3>
                   <p>Share your thoughts with other customers</p>
                   <Button
                     variant="secondary"
@@ -333,13 +342,18 @@ function ProductDetail({ handleShow, handleClose, show }) {
                   </Button>
                 </div>
               </Col>
-
+              <hr />
               <Col sm={6}>
                 <div className="review_col">
-                  <h3>Top reviews from India</h3>
-                  <Comments productid={productdetail._id} />
+                  <h3 className="review_heading">Top reviews from India</h3>
+                  {reviewlist.length == 0 ? (
+                    <p> no review</p>
+                  ) : (
+                    <Comments productid={productdetail._id} />
+                  )}
                 </div>
               </Col>
+              <hr />
             </Row>
           </div>
           <div className="Third_row">

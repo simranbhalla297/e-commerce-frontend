@@ -41,7 +41,7 @@ function RelatedProducts({ CategoryID, ProductID }) {
   }, [ProductID]);
   return (
     <div>
-      <h2>Related products</h2>
+      <h2 className="relatedProduct_heading">Related products</h2>
       {products.length == 0 ? (
         "no related products "
       ) : (

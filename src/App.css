@@ -780,13 +780,35 @@ p {
   .writeReview_col {
     margin: 15px;
   }
+  .postBtn {
+    margin-top: 15px;
+    font-size: 14px;
+  }
   .product_image {
     width: 100%;
-    height: 200px;
+    height: 400px;
+  }
+  .btn-block {
+    font-size: 12px;
   }
   .related_products {
     display: flex;
-    justify-content: center;
+  }
+  .productCardQty {
+    margin-top: 10%;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .Review_heading {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .description {
+    font-size: 12px;
+  }
+  .relatedProduct_heading,
+  .review_heading {
+    font-size: 20px;
   }
 
   .favitem_container {
@@ -900,5 +922,19 @@ p {
     padding: 14px 18px;
     text-align: left;
     box-shadow: 4px 10px 10px 0px rgba(211, 208, 208, 0.75);
+  }
+  .zoom_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+  }
+  .Zoom_image {
+    width: 200px;
+    height: 300px;
+  }
+  .productDetail_Heading {
+    font-size: 18px;
   }
 }
