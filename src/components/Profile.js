@@ -76,7 +76,7 @@ function Profile() {
               </div>
             </Col>
 
-            <Col>
+            <Col md={9}>
               <div className="profile_container">
                 <div className="profile_text">
                   <div className="profile_Heading">
@@ -85,36 +85,22 @@ function Profile() {
                   <div>
                     <div className="profile_information">
                       <p>
-                        <span
-                          style={{ marginRight: "198px", fontWeight: "bold" }}
-                        >
-                          First name
+                        <strong>First name:</strong>
+                        <span className="profile_span">
+                          {profile.firstname}
                         </span>
-                        {profile.firstname}
                       </p>
                       <p>
-                        <span
-                          style={{ marginRight: "200px", fontWeight: "bold" }}
-                        >
-                          Last name
-                        </span>
-                        {profile.lastname}
+                        <strong>Last name:</strong>
+                        <span className="profile_span">{profile.lastname}</span>
                       </p>
                       <p>
-                        <span
-                          style={{ marginRight: "172px", fontWeight: "bold" }}
-                        >
-                          Email address
-                        </span>
-                        {profile.email}
+                        <strong> Email address:</strong>
+                        <span className="profile_span"> {profile.email}</span>
                       </p>
                       <p>
-                        <span
-                          style={{ marginRight: "70px", fontWeight: "bold" }}
-                        >
-                          Mobile Number (10 digits)
-                        </span>{" "}
-                        {profile.phone}
+                        <strong>Mobile Number (10 digits):</strong>
+                        <span className="profile_span"> {profile.phone}</span>
                       </p>
                     </div>
                   </div>

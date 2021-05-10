@@ -37,9 +37,7 @@ function Favourites() {
     <div className="fav-main">
       <div className="fav_inner">
         <div className="fav_container">
-          <h4 style={{ letterSpacing: "2px", marginBottom: "20px" }}>
-            FAVOURITE ITEM LIST
-          </h4>
+          <h4 className="fav_heading">WISHLIST</h4>
 
           <div className="fav_main-Container">
             {favitemlist.map((item) => {

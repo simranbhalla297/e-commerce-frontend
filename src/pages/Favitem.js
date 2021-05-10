@@ -81,14 +81,14 @@ export default function Favitem({ data }) {
   return (
     <div className="favitem_container">
       <Row>
-        <Col md={2} className="favImage-container-col">
+        <Col md={2} sm={4} className="favImage-container-col">
           <div className="favImage-container">
             <Link to={`/productDetails?id=${data.productid}`}>
               <img src={data.image} alt={data.image} className="favImage" />
             </Link>
           </div>
         </Col>
-        <Col md={4}>
+        <Col md={4} sm={4}>
           <div className="favText_container" onMouseEnter={() => setShow(true)}>
             <h2>{data.productname}</h2>
             <h2> ₹{data.price}</h2>
@@ -101,7 +101,7 @@ export default function Favitem({ data }) {
           ) : null}
         </Col>
         {alreadyincart ? (
-          <Col md={6} className="favbtn_container_col">
+          <Col md={6} sm={4} className="favbtn_container_col">
             <h6 style={{ color: "green" }}>
               <FaCheck />
               Added to cart
@@ -117,7 +117,7 @@ export default function Favitem({ data }) {
             </div>
           </Col>
         ) : (
-          <Col md={6} className="favbtn_container_col">
+          <Col md={6} sm={3} className="favbtn_container_col">
             Item added on:{" "}
             <strong style={{ backgroundColor: "yellow" }}>
               {new Date(data.createdAt).toDateString()}

@@ -603,6 +603,7 @@ p {
   border-color: #d5d9d9;
   border-radius: 8px;
 }
+
 @media only screen and (max-width: 768px) {
   /****login****/
   .login_container {
@@ -662,8 +663,8 @@ p {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    background-color: blueviolet !important;
-    padding: 10px !important;
+
+    padding: 12px !important;
     /* margin-top: 10px; */
   }
   .navbar-brand {
@@ -787,18 +788,18 @@ p {
     display: flex;
     justify-content: center;
   }
-  .favImage {
+
+  .favitem_container {
+    padding: 10px;
+    border-bottom: 1px solid #eaeded;
     width: 100%;
   }
-  .favImage-container-col {
-    margin-right: 10px;
-  }
   .favbtn_container_col {
-    margin-top: 30px;
+    margin-top: 10px;
   }
   .fav_inner {
-    width: 80%;
-    margin: 2% auto;
+    width: 90%;
+    margin: 5% auto;
     padding: 2px;
   }
   .cart_image {
@@ -844,5 +845,60 @@ p {
     margin-left: 5px;
     margin-right: 0;
     margin-top: 10px;
+  }
+  .profile_box {
+    padding: 10px;
+    width: 100%;
+    margin: auto;
+  }
+  .profile_span {
+    margin-left: 5px;
+  }
+  .profile_container {
+    margin: 20px;
+    background-color: #fff;
+    padding: 12px;
+    font-size: 13px;
+    max-width: 100%;
+  }
+  .buttonProfile {
+    background: linear-gradient(to right, #ff5d3b 0, #ff2c65 100%);
+    color: #fff;
+    padding: 8px;
+    width: 50%;
+    border: none;
+  }
+  .profile_Heading h2 {
+    font-size: 20px;
+  }
+  .favImage-container-col {
+    width: 40%;
+  }
+  .favImage {
+    width: 60px;
+    height: 60px;
+  }
+  .favText_container h2 {
+    margin-top: 12px;
+    font-size: 12px;
+  }
+  .fav_heading {
+    margin-left: 15px;
+    color: #818182;
+  }
+  .detail_box {
+    position: relative;
+
+    display: block;
+    color: green;
+    font-size: 16px;
+    width: 300px;
+    margin-left: 10px;
+    float: left;
+    border: 1px solid #c3c4c4;
+    background-color: #f4f6f6;
+    padding: 14px 18px;
+    text-align: left;
+    box-shadow: 4px 10px 10px 0px rgba(211, 208, 208, 0.75);
   }
 }
