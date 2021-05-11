@@ -3,6 +3,14 @@
   padding: 0;
 }
 
+.input_field {
+  position: relative;
+}
+.icon_eye {
+  position: absolute;
+  top: 10px;
+  left: 270px;
+}
 .main_row {
   width: 70%;
   margin: 4% auto 1%;
@@ -1003,5 +1011,10 @@ p {
   }
   .register_form {
     margin-top: 10%;
+  }
+  .icon_eye {
+    position: absolute;
+    top: 10px;
+    left: 300px;
   }
 }

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { useSelector, useDispatch } from "react-redux";
 import { setlist } from "../../actions/cartActions";
 import { BASE_URL } from "../../Variables";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 function Login() {
   let history = useHistory();
 
@@ -12,10 +13,12 @@ function Login() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [showpassword, setShowPassword] = useState(false);
   const userinfo = useSelector((state) => state.userInfo);
   console.log(userinfo);
-
+  const togglePasswordVisiblity = () => {
+    setShowPassword(showpassword ? false : true);
+  };
   var user = JSON.parse(localStorage.getItem("userInfo"));
   console.log(user);
   const onChange = (e) => {
@@ -86,13 +89,23 @@ function Login() {
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="input_field">
+              <input
+                type={showpassword ? "text" : "password"}
+                id="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div className="icon_eye">
+                {" "}
+                {showpassword ? (
+                  <FaEye onClick={togglePasswordVisiblity} />
+                ) : (
+                  <FaEyeSlash onClick={togglePasswordVisiblity} />
+                )}
+              </div>
+            </div>
           </div>
           <div className="form-group">
             <button type="submit" className="logInbtn" onClick={onChange}>
