@@ -655,7 +655,7 @@ p {
     width: 80%;
 
     margin: auto;
-    transform: translate(1%, 20%);
+    transform: translate(1%, 10%);
   }
   .card-wrapper {
     margin: 2px;
