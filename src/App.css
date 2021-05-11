@@ -860,9 +860,9 @@ p {
     flex-wrap: wrap;
     margin-right: 0px;
   }
+
   .select_main {
     display: flex;
-
     justify-content: center;
     margin-left: 5px;
     margin-right: 0;
@@ -936,5 +936,26 @@ p {
   }
   .productDetail_Heading {
     font-size: 18px;
+  }
+  .carousel-item {
+    position: relative;
+    display: none;
+    float: left;
+    min-width: 100%;
+    margin-left: 0;
+
+    margin-right: 0;
+
+    margin-top: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease-in-out;
+  }
+  .carousel img {
+    height: 200px;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

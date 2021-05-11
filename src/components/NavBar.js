@@ -73,31 +73,6 @@ function NavBar() {
                   Login
                 </NavLink>
               )}
-              <NavLink
-                to="/cart"
-                style={{
-                  textDecoration: "none",
-                  color: "#fff",
-                  marginTop: "8px",
-                }}
-              >
-                <div style={{ display: "flex" }}>
-                  {cartList.length == 0 ? null : <p>{cartList.length}</p>}
-                  <FaShoppingCart size="25" color="#fff" /> Cart
-                </div>
-              </NavLink>
-              {userinfo && user && user.user ? (
-                <NavLink
-                  to="/favProducts"
-                  style={{
-                    textDecoration: "none",
-                    color: "#fff",
-                    marginTop: "8px",
-                  }}
-                >
-                  <FaRegHeart size="20px" />
-                </NavLink>
-              ) : null}
 
               {userinfo && user && user.user && user.user.isAdmin && (
                 <NavDropdown title="Admin">
@@ -122,6 +97,31 @@ function NavBar() {
                   </NavDropdown.Item>
                 </NavDropdown>
               )}
+              {userinfo && user && user.user ? (
+                <NavLink
+                  to="/favProducts"
+                  style={{
+                    textDecoration: "none",
+                    color: "#fff",
+                    marginTop: "8px",
+                  }}
+                >
+                  <FaRegHeart size="20px" />
+                </NavLink>
+              ) : null}
+              <NavLink
+                to="/cart"
+                style={{
+                  textDecoration: "none",
+                  color: "#fff",
+                  marginTop: "8px",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  {cartList.length == 0 ? null : <p>{cartList.length}</p>}
+                  <FaShoppingCart size="25" color="#fff" /> Cart
+                </div>
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>
