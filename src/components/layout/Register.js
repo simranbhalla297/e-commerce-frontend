@@ -40,58 +40,64 @@ function Register() {
 
   return (
     <div>
-      <form className="signup-form">
-        <h2>Register</h2>
-        <hr />
-        <div className="form-group">
-          <input
-            type="text"
-            id="name"
-            placeholder="Name"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            id="name"
-            placeholder="last name"
-            value={lastname}
-            onChange={(e) => setLastname(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="email"
-            id="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <button
-            type="submit"
-            className="btn btn-primary btn-block btn-lg"
-            onClick={onChange}
-          >
-            Sign Up
-          </button>
-        </div>
-        <div className="text-center">
-          Already have an account? <Link to="/login">Login here</Link>
-        </div>
-      </form>
+      <div className="register_form">
+        <h5 className="brandName">ProShop.in</h5>
+        <form className="Signup-form">
+          <h2>Register</h2>
+          <hr />
+          <div className="form-group">
+            <input
+              type="text"
+              id="name"
+              placeholder="Name"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              id="name"
+              placeholder="last name"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <button
+              type="submit"
+              className="btn btn-primary btn-block btn-lg"
+              onClick={onChange}
+            >
+              Sign Up
+            </button>
+          </div>
+          <div className="text-center">
+            Already have an account?{" "}
+            <Link to="/login" style={{ textDecoration: "none", color: "blue" }}>
+              Login here
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
