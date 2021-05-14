@@ -346,11 +346,8 @@ function ProductDetail({ handleShow, handleClose, show }) {
               <Col sm={6}>
                 <div className="review_col">
                   <h3 className="review_heading">Top reviews from India</h3>
-                  {reviewlist.length == 0 ? (
-                    <p> no review</p>
-                  ) : (
-                    <Comments productid={productdetail._id} />
-                  )}
+
+                  <Comments productid={productdetail._id} />
                 </div>
               </Col>
               <hr />

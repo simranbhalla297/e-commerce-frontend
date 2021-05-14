@@ -577,6 +577,12 @@ p {
 .review_heading {
   margin-bottom: 30px;
 }
+.reviewSelect {
+  margin-bottom: 15px;
+}
+.reviewSelect select {
+  padding: 2px;
+}
 .rating_field {
   margin-bottom: 40px;
 }
@@ -862,6 +868,7 @@ p {
   .writeReview_col {
     margin: 15px;
   }
+
   .postBtn {
     margin-top: 15px;
     font-size: 14px;
@@ -1096,5 +1103,12 @@ p {
   }
   .review_heading {
     margin-bottom: 20px;
+  }
+  .reviewSelect {
+    margin-bottom: 10px;
+  }
+  .reviewSelect select {
+    padding: 2px;
+    font-size: 13px;
   }
 }

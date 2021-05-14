@@ -10,7 +10,7 @@ function Comments({ productid }) {
   const dispatch = useDispatch();
   const reviewlist = useSelector((state) => state.review);
   //console.log(reviewlist);
-  const fetchAllReviews = async (productid) => {
+  const fetchAllReviews = async (productid, sortBy) => {
     // console.log("fetch data : ", productid);
     dispatch(getReviews([]));
 
@@ -20,6 +20,7 @@ function Comments({ productid }) {
       //send request to server
       body: JSON.stringify({
         productId: productid,
+        sortBy: sortBy,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -37,8 +38,20 @@ function Comments({ productid }) {
   useEffect(() => {
     fetchAllReviews(productid);
   }, [productid]); //
+  const sortOnclick = (e) => {
+    var selectvalue = e.target.value;
+    fetchAllReviews(productid, selectvalue);
+  };
   return (
     <div>
+      <div className="reviewSelect">
+        <select onChange={sortOnclick}>
+          <option value="AllReviews">All reviews</option>
+          <option value="TopReviews">Top reviews</option>
+          <option value="LatestReviews">Most recent</option>
+        </select>
+      </div>
+
       <div>
         {reviewlist.map((list) => {
           return (
