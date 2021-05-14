@@ -4,6 +4,8 @@ import Ratings from "./Ratings";
 import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
+  // console.log(product._id);
+
   return (
     <div className="main_card">
       <div className="card_container">
@@ -24,7 +26,7 @@ export default function ProductCard({ product }) {
             to={`/productDetails?id=${product._id}`}
             className="product_link"
           >
-            <h6>{product.name}</h6>
+            <h6 className="productName">{product.name}</h6>
           </Link>
           <p className="product_price">₹ {product.price}</p>
           <p className="product_seller">Seller: {product.brand}</p>

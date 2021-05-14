@@ -32,7 +32,7 @@ function Favourites() {
       history.push("/login");
     }
     getfavProducts();
-  }, []);
+  }, [favitemlist]);
   return (
     <div className="fav-main">
       <div className="fav_inner">

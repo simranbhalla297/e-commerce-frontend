@@ -95,9 +95,9 @@ function ProductDetail({ handleShow, handleClose, show }) {
 
   const togglefavStatus = async () => {
     var search = location.search;
-    console.log(search);
+    //console.log(search);
     var ProductId = search.substring(4);
-    console.log(ProductId);
+    // console.log(ProductId);
     const addProducttofav = {
       productname: productdetail.name,
       price: productdetail.price,
@@ -105,7 +105,7 @@ function ProductDetail({ handleShow, handleClose, show }) {
       image: productdetail.image,
       isFav: !fav,
     };
-    console.log(addProducttofav);
+    //console.log(addProducttofav);
     const response = await fetch(`${BASE_URL}/favItem/add`, {
       method: "POST",
       body: JSON.stringify(addProducttofav),
@@ -116,7 +116,7 @@ function ProductDetail({ handleShow, handleClose, show }) {
     });
 
     const data = await response.json();
-    console.log(data.data);
+    // console.log(data.data);
     if (addProducttofav.isFav) {
       dispatch(addFavitems(data.data));
     } else {

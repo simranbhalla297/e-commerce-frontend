@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Dropdown, DropdownButton } from "react-bootstrap";
 import { useLocation, useHistory } from "react-router-dom";
 import { BASE_URL } from "../Variables";
 function PostComment() {
@@ -29,6 +29,12 @@ function PostComment() {
     // console.log(rating);
     //console.log(username);
     postComment();
+  };
+
+  const onSelectRating = (e) => {
+    var customerRating = e;
+    console.log(customerRating);
+    setRating(customerRating);
   };
   useEffect(() => {
     if (!user) {
@@ -61,56 +67,73 @@ function PostComment() {
   //get reviews
 
   return (
-    <div>
-      <h2>Create Review</h2>
-      <Form>
-        <Form.Group>
-          <Form.Label>user name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="name"
-            value={username}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-        </Form.Group>
+    <div style={{ backgroundColor: "red" }}>
+      <div className="review_container">
+        <div className="review">
+          <div className="review_box">
+            <h4 className="review_heading">Create Review</h4>
+            <div>
+              <h5>Overall rating</h5>
 
-        <Form.Group>
-          <Form.Label>Add A written review</Form.Label>
-          <Form.Control
-            type="text"
-            value={comment}
-            placeholder="what dis you like or dislike?"
-            onChange={(e) => setComment(e.target.value)}
-          />
-        </Form.Group>
+              <DropdownButton
+                className="dropdown_rating"
+                onSelect={onSelectRating}
+                title="Select Overall rating"
+              >
+                <Dropdown.Item eventKey="1">1</Dropdown.Item>
+                <Dropdown.Item eventKey="2">2</Dropdown.Item>
+                <Dropdown.Item eventKey="3"> 3</Dropdown.Item>
+                <Dropdown.Item eventKey="4">4</Dropdown.Item>
+                <Dropdown.Item eventKey="5">5</Dropdown.Item>
+              </DropdownButton>
+              <Form.Group className="rating_field">
+                <Form.Control value={rating} placeholder="Rating" />
+              </Form.Group>
+            </div>
 
-        <Form.Group>
-          <Form.Label>Overall rating</Form.Label>
-          <Form.Control
-            type="Number"
-            value={rating}
-            placeholder="Rating"
-            onChange={(e) => setRating(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Product Id</Form.Label>
-          <Form.Control
-            type="text"
-            value={productid}
-            placeholder="product id"
-            onChange={(e) => setProductid(e.target.value)}
-          />
-        </Form.Group>
+            <hr />
+            <Form>
+              <Form.Group>
+                <Form.Label>Add a written review</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={comment}
+                  placeholder="what dis you like or dislike?"
+                  onChange={(e) => setComment(e.target.value)}
+                />
+              </Form.Group>
 
-        <Button
-          type="submit"
-          style={{ backgroundColor: "#6c757d" }}
-          onClick={submitHandler}
-        >
-          Submit
-        </Button>
-      </Form>
+              <Form.Group>
+                <Form.Label>Product Id</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={productid}
+                  placeholder="product id"
+                  onChange={(e) => setProductid(e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>user name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="name"
+                  value={username}
+                  onChange={(e) => setUserName(e.target.value)}
+                />
+              </Form.Group>
+
+              <Button
+                className="ReviewSubmit_btn"
+                type="submit"
+                onClick={submitHandler}
+              >
+                Submit
+              </Button>
+            </Form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

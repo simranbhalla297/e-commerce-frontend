@@ -214,7 +214,13 @@ function EditProfile() {
                     Save Updates
                   </Button>
                   <Button className="cancelBtn">
-                    <Link to="/profile" className="cancelBtn">
+                    <Link
+                      to="/profile"
+                      style={{
+                        textDecoration: "none",
+                        color: "#fff",
+                      }}
+                    >
                       Cancel
                     </Link>
                   </Button>

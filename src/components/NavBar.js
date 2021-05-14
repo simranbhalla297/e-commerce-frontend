@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 
 import { NavLink } from "react-router-dom";
-import { FaShoppingCart, FaRegHeart, FaUserCircle } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaRegHeart,
+  FaUserCircle,
+  FaUser,
+} from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 //import SearchBox from "./SearchBox";
@@ -118,8 +123,10 @@ function NavBar() {
                 }}
               >
                 <div style={{ display: "flex" }}>
+                  {" "}
+                  Cart
+                  <FaShoppingCart size="25" color="#fff" />
                   {cartList.length == 0 ? null : <p>{cartList.length}</p>}
-                  <FaShoppingCart size="25" color="#fff" /> Cart
                 </div>
               </NavLink>
             </Nav>

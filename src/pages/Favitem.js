@@ -19,13 +19,13 @@ export default function Favitem({ data }) {
   const cartlist = useSelector((state) => state.cart);
   const productList = useSelector((state) => state.products);
   console.log(productList);
-  const onRemoveClick = (id) => {
+  const onRemoveClick = (productId) => {
     //console.log("remove");
-    //console.log(id);
-    removeProductfromfavList(id);
+    console.log(productId);
+    removeProductfromfavList(productId);
   };
-  const removeProductfromfavList = async (id) => {
-    var apiurl = `${BASE_URL}/favItem/favItem/${id}`;
+  const removeProductfromfavList = async (productId) => {
+    var apiurl = `${BASE_URL}/favItem/favItem/${productId}`;
     let response = await fetch(apiurl, {
       method: "DELETE",
       headers: {
@@ -36,7 +36,7 @@ export default function Favitem({ data }) {
     if (response.ok) {
       const json = await response.json();
       console.log(json);
-      dispatch(remove(id));
+      dispatch(remove(productId));
     } else {
       console.log("fetch error");
     }
@@ -132,7 +132,7 @@ export default function Favitem({ data }) {
               </Button>
               <Button
                 className="btn btn-dark my-3"
-                onClick={() => onRemoveClick(data.productid)}
+                onClick={() => onRemoveClick(data._id)}
               >
                 Delete
               </Button>
